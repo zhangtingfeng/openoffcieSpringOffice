@@ -40,7 +40,7 @@ import java.util.UUID;
 @Controller
 public class SignControl {
 
-
+///https://github.com/zhangtingfeng  Foodztf1 PASSWORD
     @RequestMapping(value = "apiPdfUpload/{id}", method = RequestMethod.POST)
     @ResponseBody
     public void H5SginApiPdfUpload(@PathVariable String id) throws Exception {
