@@ -1,10 +1,12 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static ConsoleAppZTF.Files;
 
 namespace ConsoleAppZTF
 {
@@ -14,7 +16,94 @@ namespace ConsoleAppZTF
         static Encrypt ddddEncrypt = new Encrypt();
         static EncryptMP4Fun EncryptMP4Fun = new EncryptMP4Fun();
 
+        static DeleteQueue ddddddddd = null;
+
+
         static void Main(string[] args)
+        {
+            //string strRaw = @"C:\Temp\working.accdb";
+            //string strOut = @"C:\Temp\workingOut.accdb";
+            //string strOutToRaw = @"C:\Temp\workingOutToRaw.accdb";
+            ///  new Person();
+            ///  
+
+            String strFile = new Files().CopySingleFileToPathKeepStu(@"C:\Logs\WebSite\bpmf - Copy.mp4", @"C:\Logs", @"C:\SSH");
+            Console.WriteLine(strFile);
+
+
+            Console.ReadLine();
+
+
+
+
+
+
+
+            ddddddddd = new DeleteQueue();
+
+
+            List<FileSystemInfo> ddddPerson = new Files().GetFileList(@"C:\Logs");
+            foreach (var ttt in ddddPerson)
+            {
+                ddddddddd.SetDeleteQueue(ttt.FullName);
+            }
+
+
+
+            Console.ReadLine();
+
+
+
+
+
+            string strRaw = @"C:\Temp\1112.xlsx";
+            string strOut = @"C:\Temp\1113.xlsx";
+            string strOutToRaw = @"C:\Temp\1114.xlsx";
+
+            ddddddddd.SetDeleteQueue(strRaw);
+
+            ddddddddd.SetDeleteQueue(strOut);
+            ddddddddd.SetDeleteQueue(strOutToRaw);
+
+
+
+        }
+
+
+
+
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleAppZTF
+{
+    class MainProgram
+    {
+
+        static Encrypt ddddEncrypt = new Encrypt();
+        static EncryptMP4Fun EncryptMP4Fun = new EncryptMP4Fun();
+
+        static void MainProgramMain(string[] args)
         {
             //string strRaw = @"C:\Temp\working.accdb";
             //string strOut = @"C:\Temp\workingOut.accdb";
@@ -74,3 +163,15 @@ namespace ConsoleAppZTF
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
