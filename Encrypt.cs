@@ -11,7 +11,7 @@ namespace ConsoleAppZTF
     public class Encrypt
     {
 
-
+        private const string Passwor = "123456";
 
 
 
@@ -103,7 +103,7 @@ namespace ConsoleAppZTF
         /// <param name="inFile">待加密文件</param>
         /// <param name="outFile">加密后输入文件</param>
         /// <param name="password">加密密码</param>
-        public void EncryptFile(string inFile, string outFile, string password)
+        public void EncryptFile(string inFile, string outFile)
         {
             using (FileStream fin = File.OpenRead(inFile),
                 fout = File.OpenWrite(outFile))
@@ -119,7 +119,7 @@ namespace ConsoleAppZTF
                 byte[] salt = GenerateRandomBytes(16);
 
                 // 创建加密对象
-                SymmetricAlgorithm sma = CreateRijndael(password, salt);
+                SymmetricAlgorithm sma = CreateRijndael(Passwor, salt);
                 sma.IV = IV;
 
                 // 在输出文件开始部分写入IV和salt
@@ -158,6 +158,9 @@ namespace ConsoleAppZTF
                     cout.Close();
                 }
             }
+
+
+
         }
 
         /// <summary>
@@ -166,7 +169,7 @@ namespace ConsoleAppZTF
         /// <param name="inFile">待解密文件</param>
         /// <param name="outFile">解密后输出文件</param>
         /// <param name="password">解密密码</param>
-        public void DecryptFile(string inFile, string outFile, string password)
+        public void DecryptFile(string inFile, string outFile)
         {
             // 创建打开文件流
             using (FileStream fin = File.OpenRead(inFile),
@@ -183,7 +186,7 @@ namespace ConsoleAppZTF
                 byte[] salt = new byte[16];
                 fin.Read(salt, 0, 16);
 
-                SymmetricAlgorithm sma = CreateRijndael(password, salt);
+                SymmetricAlgorithm sma = CreateRijndael(Passwor, salt);
                 sma.IV = IV;
 
                 value = 32;
