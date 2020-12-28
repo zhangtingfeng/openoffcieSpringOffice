@@ -1,3 +1,56 @@
+ private static void encrypt1111(bool ddddEncryptBll) {
+            List<FileSystemInfo> ddddPersonList = new Files().GetFileList(@"C:\Logs");
+            foreach (var ttt in ddddPersonList)
+            {
+                if (ttt.Extension.ToLower() == ".mp4")
+                {
+                    EncryptMP4Fun.fun(ttt.FullName);
+                }
+                else
+                {
+                    string strTemp = @"c:\tmp\Temp.copy";
+                    try
+                    {
+                        File.Delete(strTemp);
+                        while (true)
+                        {
+                            if (!File.Exists(strTemp))
+                            {
+                                break;
+                            }
+                        }
+
+                    }
+                    catch (Exception ddd)
+                    {
+                        System.Threading.Thread.Sleep(1000);
+                        File.Delete(strTemp);
+                        System.Threading.Thread.Sleep(1000);
+                    }
+
+                    File.Move(ttt.FullName, strTemp);
+                    if (ddddEncryptBll)
+                    {
+                        ddddEncrypt.EncryptFile(strTemp, ttt.FullName);
+                    }
+                    else {
+                        ddddEncrypt.DecryptFile(strTemp, ttt.FullName);
+                    }
+                }
+                Console.WriteLine(ttt.FullName);
+            }
+
+        }
+
+
+
+
+
+
+
+
+
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
